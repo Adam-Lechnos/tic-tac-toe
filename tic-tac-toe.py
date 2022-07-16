@@ -15,16 +15,16 @@ def p1_choice():
         choice2 = 'O'
     else:
         choice2 = 'X'
-    print(f"Player 1 is {choice}, Player 2 is {choice2}")
+    print(f"\nPlayer 1 is {choice}, Player 2 is {choice2}")
     return choice
 
 
-def p1_position():
+def p1_position(currentList):
 
     choice = 10
 
     while choice not in range(1,10):
-        choice = int(input("\n\nPlayer 1, select a corresponding position on the number keypad (1-9):\n\n 7|8|9 \n-------\n 4|5|6 \n-------\n 1|2|3\n\n> "))
+        choice = int(input(f"\nPlayer 1, select a corresponding position on the number keypad (1-9):\n\n {currentList[6]}|{currentList[7]}|{currentList[8]} \n-------\n {currentList[3]}|{currentList[4]}|{currentList[5]} \n-------\n {currentList[0]}|{currentList[1]}|{currentList[2]}\n\n> "))
 
         if choice not in range(1,10):
             print("Please select numbers 1-9 only!")
@@ -32,12 +32,12 @@ def p1_position():
     return choice
 
 
-def p2_position():
+def p2_position(currentList):
 
     choice = 10
 
     while choice not in range(1,10):
-        choice = int(input("\n\nPlayer 2, select a corresponding position on the number keypad (1-9):\n\n 7|8|9 \n-------\n 4|5|6 \n-------\n 1|2|3\n\n> "))
+        choice = int(input(f"\nPlayer 2, select a corresponding position on the number keypad (1-9):\n\n {currentList[6]}|{currentList[7]}|{currentList[8]} \n-------\n {currentList[3]}|{currentList[4]}|{currentList[5]} \n-------\n {currentList[0]}|{currentList[1]}|{currentList[2]}\n\n> "))
 
         if choice not in range(1,10):
             print("Please select numbers 1-9 only!")
@@ -108,7 +108,8 @@ def used_position_check(currentList,position):
     import os
 
     if position in currentList:
-        currentList.remove(position)
+        #currentList.remove(position)
+        currentList[position-1] = '-'
         return False
     else:
         os.system('clear')
@@ -146,7 +147,7 @@ else:
 while game_on or playagain:
     listChecker = True
     while listChecker:
-        p1position = p1_position()
+        p1position = p1_position(available_items)
         listChecker = used_position_check(available_items,p1position)
         if listChecker == False:
             break
@@ -170,7 +171,7 @@ while game_on or playagain:
 
     listChecker = True
     while listChecker:
-        p2position = p2_position()
+        p2position = p2_position(available_items)
         listChecker = used_position_check(available_items,p2position)
         if listChecker == False:
             break
